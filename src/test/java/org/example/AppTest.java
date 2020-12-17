@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest {
     @Test
-    public void whenRandomIntInArrayReturnsTrue() {
+    public void whenRandomIntInArrayReturnsTrueTest() {
         List<Integer> arrayInt = readFile("testNumbers.txt");
 
         int max = Collections.max(arrayInt);
