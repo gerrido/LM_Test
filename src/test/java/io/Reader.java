@@ -8,22 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Reader {
+public final class Reader {
 
-    public static List<Integer> fileRead(String fileName) {
-        ArrayList<String> arrayListString = new ArrayList<>();
-        try (Scanner s = new Scanner(getFileFromResource(fileName)).useDelimiter("\\s*,\\s*")) {
+    private Reader() {
+    }
+
+    public static List<Integer> readFile(String fileName) {
+        ArrayList<String> arrayStringList = new ArrayList<>();
+        try (Scanner s = new Scanner(getFileFromResource(fileName), "UTF-8").useDelimiter("\\s*,\\s*")) {
             while (s.hasNext()) {
-                arrayListString.add(s.next().trim());
+                arrayStringList.add(s.next().trim());
             }
-        }
-        catch (IOException | URISyntaxException e) {
+        } catch (IOException | URISyntaxException e) {
             System.out.println("Error reading file: " + e);
         }
 
-        List<Integer> arrayInt = new ArrayList<>();
-        arrayListString.forEach(element -> arrayInt.add(Integer.parseInt(element)));
-        return arrayInt;
+        List<Integer> arrayIntList = new ArrayList<>();
+        arrayStringList.forEach(element -> arrayIntList.add(Integer.parseInt(element)));
+        return arrayIntList;
     }
 
     private static File getFileFromResource(String fileName) throws URISyntaxException {
